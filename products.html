@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdTech Hardware & Software License Shop | The Digital Fixer Gwalior</title>
+    <meta name="description" content="Explore and purchase premium interactive smartboards, 4K PTZ camera installations, School ERP licenses, custom E-Commerce packages, and AI automation tools.">
+    <meta name="keywords" content="Smartboard Shop Gwalior, PTZ Camera Morena, School ERP License price India">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="EdTech Hardware & Software License Shop | The Digital Fixer Gwalior">
+    <meta property="og:description" content="Explore and purchase premium interactive smartboards, 4K PTZ camera installations, School ERP licenses, custom E-Commerce packages, and AI automation tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thedigitalfixer.com/products.html">
+    <meta property="og:image" content="assets/images/edtech_lms_india.png">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="icon" type="image/png" href="assets/images/logo-only.png">
+    
+    <!-- Load Theme Toggle Logic immediately in head -->
+    <script src="assets/js/darkmode.js"></script>
+
+    <style>
+        /* Custom Styles for Shop Page */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        .filter-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+        .product-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+        .product-img-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+        }
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-sm);
+        }
+        .product-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .product-stars {
+            color: #f59e0b;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .product-specs {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .product-specs li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .product-specs li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+        }
+        .product-footer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .product-price {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--color-primary);
+        }
+        .btn-buy-wa {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-buy-wa:hover {
+            background-color: #20ba56;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+        .btn-buy-wa svg {
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE LOADER -->
+    <div class="page-loader" id="loader">
+        <img src="assets/images/logo.png" alt="The Digital Fixer logo loading" class="loader-logo" onerror="this.src='assets/images/logo-medium.png'">
+        <div class="loader-spinner"></div>
+        <h4 style="color: white; font-family: var(--font-subheading);">Preparing Premium Environment...</h4>
+    </div>
+
+    <!-- SHARED NAVIGATION DYNAMIC INJECT -->
+    <header id="global-header"></header>
+
+    <!-- UNIQUE PAGE DYNAMIC BODY -->
+    <main>
+        
+        <section class="section-padding" style="padding-top: 150px; background: var(--bg-primary);">
+            <div class="container">
+                <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem;">
+                    <span style="color: var(--color-primary); font-weight:700; font-family: var(--font-subheading); text-transform: uppercase; letter-spacing: 0.1em;">TDF Store</span>
+                    <h1 style="margin-top: 1rem;">Premium Hardware & Software Licenses</h1>
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Direct logistics & onsite setup in Gwalior, Morena, Jhansi, Datia, and Ambah. Digital licenses provisioned globally across India.</p>
+                </div>
+
+                <!-- Product Filters -->
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All Products</button>
+                    <button class="filter-btn" data-filter="hardware">EdTech Hardware</button>
+                    <button class="filter-btn" data-filter="software">Software Licenses</button>
+                    <button class="filter-btn" data-filter="packages">Web & App Packages</button>
+                    <button class="filter-btn" data-filter="marketing">Marketing & Growth</button>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="product-grid" id="product-container">
+                    
+                    <!-- Product 1 -->
+                    <div class="product-card" data-category="hardware">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/smartboard_75_india.png" alt="Interactive Smartboard 75" class="product-img">
+                            <span class="product-badge">Best Seller</span>
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">Interactive Smartboard (75" UHD)</h3>
+                                <div class="product-stars">★★★★★ <span style="color: var(--text-tertiary); font-size:0.8rem;">(42 reviews)</span></div>
+                                <p class="product-desc">4K UHD Intelligent Interactive Flat Panel with pre-loaded teaching dashboards, anti-glare shield, and dual-boot Android/Windows OS.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>75-inch 4K Touch Screen</li>
+                                <li>20-Point Active Stylus Touch</li>
+                                <li>Onsite Installation Included</li>
+                                <li>3-Year Onsite Warranty</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹1,35,000</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20am%20interested%20in%20ordering%20the%20*Interactive%20Smartboard%20(75%22%20UHD)*%20for%20%E2%82%B91,35,000.%20Please%20share%20shipping%20and%20installation%20details." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card" data-category="hardware">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/smartboard_85_india.png" alt="Interactive Smartboard 85" class="product-img">
+                            <span class="product-badge">Premium</span>
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">Interactive Smartboard (85" UHD)</h3>
+                                <div class="product-stars">★★★★★ <span style="color: var(--text-tertiary); font-size:0.8rem;">(29 reviews)</span></div>
+                                <p class="product-desc">Massive 85-inch 4K UHD smartboard, perfect for large coaching classrooms, colleges, and office boardrooms. Built-in recording apps.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>85-inch Massive 4K Display</li>
+                                <li>Anti-Glare Toughened Glass</li>
+                                <li>OPS Core i5 Windows/Android</li>
+                                <li>3-Year Onsite Warranty</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹1,95,000</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20am%20interested%20in%20ordering%20the%20*Interactive%20Smartboard%20(85%22%20UHD)*%20for%20%E2%82%B91,95,000.%20Please%20share%20delivery%20timeline%20for%20Gwalior/Morena." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card" data-category="hardware">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/ptz_camera_india.png" alt="4K Ultra HD PTZ Camera" class="product-img">
+                            <span class="product-badge">New</span>
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">4K Ultra HD PTZ Camera</h3>
+                                <div class="product-stars">★★★★☆ <span style="color: var(--text-tertiary); font-size:0.8rem;">(18 reviews)</span></div>
+                                <p class="product-desc">Smart auto-tracking 4K pan-tilt-zoom camera with AI object focus, ideal for streaming lectures and recording high-definition tutorials.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>4K Resolution @ 60fps</li>
+                                <li>12x Optical Zoom</li>
+                                <li>USB 3.0, HDMI & IP Streaming</li>
+                                <li>Onsite Setup & Calibration</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹38,500</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20am%20interested%20in%20purchasing%20the%20*4K%20Ultra%20HD%20PTZ%20Camera*%20for%20%E2%82%B938,500.%20Please%20share%20product%20specs%20and%20warranty%20details." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card" data-category="hardware">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/collar_mic_india.png" alt="Wireless Collar Microphone" class="product-img">
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">Wireless Microphone System</h3>
+                                <div class="product-stars">★★★★☆ <span style="color: var(--text-tertiary); font-size:0.8rem;">(12 reviews)</span></div>
+                                <p class="product-desc">Dual-channel wireless lapel mic kit with active DSP noise cancellation. Perfect for capturing crystal clear classroom voice and video lectures.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>Dual Transmitters + 1 Receiver</li>
+                                <li>Active DSP Noise Filtering</li>
+                                <li>100-Meter Transmission Range</li>
+                                <li>Charging Case + 8h Battery</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹12,500</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20want%20to%20enquire%20about%20the%20*Wireless%20Collar%20Microphone%20System*%20for%20%E2%82%B912,500.%20Let%20me%20know%20the%20stock%20availability." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card" data-category="software">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/school_erp_india.png" alt="School ERP Pro Annual License" class="product-img">
+                            <span class="product-badge">Hot</span>
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">School ERP & LMS Annual License</h3>
+                                <div class="product-stars">★★★★★ <span style="color: var(--text-tertiary); font-size:0.8rem;">(58 reviews)</span></div>
+                                <p class="product-desc">Cloud-based ERP platform to manage admissions, digital fee collection, exam reports, parent alerts, and active online lecture directories.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>Unlimited Student Database</li>
+                                <li>Parent & Teacher Android App</li>
+                                <li>Free Automatic Updates</li>
+                                <li>24/7 Priority Support Desk</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹24,999/yr</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I'd%20like%20to%20subscribe%20to%20the%20*School%20ERP%20%26%20LMS%20Annual%20Software%20License*%20for%20%E2%82%B924,999/year.%20Please%20arrange%20a%20setup%20call." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card" data-category="packages">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/ecommerce_package_india.png" alt="E-Commerce Store Website Package" class="product-img">
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">E-Commerce Online Store Package</h3>
+                                <div class="product-stars">★★★★★ <span style="color: var(--text-tertiary); font-size:0.8rem;">(34 reviews)</span></div>
+                                <p class="product-desc">Complete online retail setup on Shopify or WooCommerce. Includes payment integrations, receipt generators, and basic local SEO.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>Custom Clean UI Design</li>
+                                <li>Up to 50 Initial Products</li>
+                                <li>PhonePe/Razorpay Gateways</li>
+                                <li>1-Year Free Maintenance</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹45,000</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20want%20to%20buy%20the%20*E-Commerce%20Online%20Store%20Website%20Package*%20for%20%E2%82%B945,000.%20Let's%20discuss%20payment%20gateways%20and%20design." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="product-card" data-category="marketing">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/seo_package_india.png" alt="Premium Local SEO Campaign" class="product-img">
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">Premium Local SEO & Leads Campaign</h3>
+                                <div class="product-stars">★★★★★ <span style="color: var(--text-tertiary); font-size:0.8rem;">(27 reviews)</span></div>
+                                <p class="product-desc">3-Month hyper-local Maps and Google Search optimization designed specifically to dominate search results in Morena & Gurugram.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>Keyword Ranks Domination</li>
+                                <li>Google Map Pack Setup</li>
+                                <li>100+ Verified Sales Leads</li>
+                                <li>Monthly Performance Audits</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹29,999</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20want%20to%20launch%20the%20*Premium%20Local%20SEO%20%26%20Leads%20Campaign*%20for%20%E2%82%B929,999.%20Please%20run%20an%20initial%20keyword%20analysis%20for%20my%20business." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="product-card" data-category="software">
+                        <div class="product-img-wrapper">
+                            <img src="assets/images/ai_whatsapp_bot_india.png" alt="AI Chatbot & WhatsApp Integration" class="product-img">
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <h3 class="product-title">AI Chatbot & WhatsApp API Setup</h3>
+                                <div class="product-stars">★★★★★ <span style="color: var(--text-tertiary); font-size:0.8rem;">(19 reviews)</span></div>
+                                <p class="product-desc">Official Meta WhatsApp API setup and self-learning conversational AI chatbot. Automates customer FAQs and lead routing logs.</p>
+                            </div>
+                            <ul class="product-specs">
+                                <li>Meta Green Tick Verification support</li>
+                                <li>Self-learning AI Model Tuning</li>
+                                <li>Unified Team WhatsApp Inbox</li>
+                                <li>Auto-Sync with Google Sheets</li>
+                            </ul>
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">₹18,500</span>
+                            <a href="https://wa.me/918109065947?text=Hi%20The%20Digital%20Fixer,%20I%20am%20interested%20in%20the%20*AI%20Chatbot%20%26%20Official%20WhatsApp%20API%20Integration*%20for%20%E2%82%B918,500.%20Please%20share%20WhatsApp%20business%20verification%20steps." target="_blank" class="btn-buy-wa">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.324 5.328 0 12.008 0c3.233.001 6.271 1.258 8.56 3.549 2.289 2.29 3.544 5.332 3.544 8.561 0 6.678-5.325 12.002-12.007 12.002-2.005-.001-3.973-.5-5.772-1.448L0 24zm6.59-4.817c1.657.982 3.284 1.503 5.362 1.504 5.673 0 10.289-4.614 10.292-10.287.001-2.748-1.066-5.331-3.004-7.271C17.299 1.188 14.717.5 12.008.5 6.335.5 1.718 5.116 1.715 10.79c-.001 2.19.569 3.864 1.587 5.5l-.993 3.624 3.748-.981zM18.23 15.3c-.34-.17-2.01-.99-2.32-1.11-.31-.11-.53-.17-.75.17-.22.34-.85 1.11-1.04 1.33-.19.22-.38.25-.72.08-.34-.17-1.43-.53-2.73-1.69-1.01-.9-1.69-2.01-1.89-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.39.51-.59.17-.19.22-.34.34-.56.11-.22.06-.42-.03-.59-.08-.17-.75-1.8-1.03-2.48-.27-.66-.55-.57-.75-.58-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.13-1.15 2.75 0 1.62 1.18 3.19 1.34 3.41.16.22 2.32 3.54 5.62 4.97.78.34 1.4.54 1.88.7.79.25 1.51.21 2.08.13.63-.09 2.01-.82 2.3-1.61.29-.79.29-1.47.2-1.61-.09-.14-.3-.22-.64-.39z"/></svg> Buy Now
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- RELATED SERVICES / QUICK LINKS -->
+    <section class="section-padding" style="background: var(--bg-secondary); border-top:1px solid var(--border-color);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span style="color: var(--color-primary); font-weight:700;">Explore More</span>
+                <h2>Transformational Services & Core Products</h2>
+            </div>
+            <div class="grid-4 stagger-container">
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <h4 style="margin-bottom: 1rem;">Smart Boards Setup</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-tertiary);">PTZ cameras and interactive classroom installations.</p>
+                    <a href="smart-classroom.html" class="btn-tertiary" style="font-size:0.8rem; padding-left:0;">Explore Setup</a>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <h4 style="margin-bottom: 1rem;">School ERP Platform</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-tertiary);">Digital fee systems, apps, and attendance tracking.</p>
+                    <a href="school-erp.html" class="btn-tertiary" style="font-size:0.8rem; padding-left:0;">Explore ERP</a>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <h4 style="margin-bottom: 1rem;">Website Design Gwalior</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-tertiary);">Stunning modern company web portal development.</p>
+                    <a href="website-development.html" class="btn-tertiary" style="font-size:0.8rem; padding-left:0;">Explore Web Dev</a>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <h4 style="margin-bottom: 1rem;">SEO & Ads Morena</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-tertiary);">Rank #1 on Google Search and acquire premium leads.</p>
+                    <a href="seo-services.html" class="btn-tertiary" style="font-size:0.8rem; padding-left:0;">Explore SEO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQS ACCORDION -->
+    <section class="section-padding" style="background: var(--bg-tertiary); border-top:1px solid var(--border-color);">
+        <div class="container" style="max-width: 800px;">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span style="color: var(--color-primary); font-weight:700;">FAQs</span>
+                <h2>Frequently Answered Queries</h2>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-trigger">What services does The Digital Fixer provide?</button>
+                    <div class="faq-content">
+                        <p>We provide a complete suite of IT and digital solutions, including Website Development, E-Commerce Development, Mobile App Development, Custom Software Solutions (ERP, CRM, School Management Systems), SEO Services, Digital Marketing, Social Media Management, Graphic Designing, Video Editing & Animation, Branding & Logo Design, Cybersecurity, Amazon Seller Management, and Business Automation Solutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">Why should I choose The Digital Fixer?</button>
+                    <div class="faq-content">
+                        <p>We stand out by offering fully customized and tailored solutions, competitive and affordable pricing plans, an experienced team of certified professionals, modern and scalable technology stacks, dedicated post-launch support, and premium quality designs that ensure high user engagement and conversion rates.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">How can I contact The Digital Fixer for a free consultation?</button>
+                    <div class="faq-content">
+                        <p>You can connect with us directly via our Website Contact Form, Email Support, WhatsApp chat, or direct phone calls. We offer a complimentary initial consultation to analyze your business or school requirements and provide a customized proposal.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="faq.html" class="btn-tertiary" style="font-size: 0.95rem; font-weight: 600; text-decoration: underline; color: var(--color-primary);">Have more questions? View all FAQs &rarr;</a>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <!-- SHARED FOOTER DYNAMIC INJECT -->
+    <footer id="global-footer"></footer>
+
+    <!-- SHARED FLOATING CHAT/WA/SCROLL WIDGETS -->
+    <div id="global-widgets"></div>
+
+    <!-- JS MODULES -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/counters.js"></script>
+    <script src="assets/js/forms.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+
+    <!-- Filter Script Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Toggle active button style
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filterValue = btn.getAttribute('data-filter');
+                    
+                    productCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Packages | Web Design, School ERP, SEO | The Digital Fixer</title>
+    <meta name="description"
+        content="Explore affordable, transparent pricing packages for web development, mobile apps, School ERP, LMS portals, and digital marketing by The Digital Fixer.">
+    <meta name="keywords"
+        content="website development cost, school erp pricing, lms pricing, digital marketing cost, app development packages">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Pricing Packages | The Digital Fixer">
+    <meta property="og:description"
+        content="Explore affordable, transparent pricing packages for web development, mobile apps, School ERP, LMS portals, and digital marketing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thedigitalfixer.com/pricing.html">
+    <meta property="og:image" content="assets/images/logo.png">
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="icon" type="image/png" href="assets/images/logo-only.png">
+
+    <!-- Load Theme Toggle Logic immediately in head -->
+    <script src="assets/js/darkmode.js"></script>
+
+    <style>
+        /* Pricing Section Overrides */
+        .pricing-hero {
+            padding: 160px 0 50px;
+            background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-primary) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pricing-tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .pricing-tab-btn {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.9rem 1.75rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-family: var(--font-subheading);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-tab-btn:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .pricing-tab-btn.active {
+            background: var(--grad-primary);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-content-section {
+            padding: 60px 0 100px;
+            background: var(--bg-primary);
+        }
+
+        .pricing-panel {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .pricing-panel.active {
+            display: block;
+        }
+
+        /* Pricing Card Overrides */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card-premium {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-card-premium:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+
+        .pricing-card-premium.popular {
+            border-color: var(--color-premium);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .pricing-card-premium.popular::after {
+            content: '⭐ Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--grad-premium);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .plan-header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .plan-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            min-height: 35px;
+        }
+
+        .plan-price-block {
+            margin: 1.5rem 0;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+        }
+
+        .plan-price-period {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .plan-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+
+        .plan-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        .plan-feature-icon {
+            color: var(--color-success);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .plan-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-family: var(--font-subheading);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        /* Pricing Table Styles */
+        .pricing-table-section {
+            margin-top: 6rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-table-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .custom-pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .custom-pricing-table th,
+        .custom-pricing-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .custom-pricing-table th {
+            font-family: var(--font-subheading);
+            font-weight: 700;
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        .custom-pricing-table tr:hover td {
+            background: rgba(14, 165, 233, 0.03);
+        }
+
+        .table-price-tag {
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        /* Grid specific styles */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .tagline-banner {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px dashed var(--color-premium);
+            border-radius: var(--radius-md);
+            margin-top: 3rem;
+            font-family: var(--font-subheading);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-hero {
+                padding: 130px 0 40px;
+            }
+
+            .pricing-card-premium {
+                padding: 2rem 1.5rem;
+            }
+
+            .custom-pricing-table th,
+            .custom-pricing-table td {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE LOADER -->
+    <div class="page-loader" id="loader">
+        <img src="assets/images/logo.png" alt="The Digital Fixer logo loading" class="loader-logo"
+            onerror="this.src='assets/images/logo-medium.png'">
+        <div class="loader-spinner"></div>
+        <h4 style="color: white; font-family: var(--font-subheading);">Preparing Premium Environment...</h4>
+    </div>
+
+    <!-- SHARED NAVIGATION DYNAMIC INJECT -->
+    <header id="global-header"></header>
+
+    <!-- UNIQUE PAGE DYNAMIC BODY -->
+    <main>
+
+        <!-- HERO HEADER -->
+        <section class="pricing-hero">
+            <div class="container">
+                <span
+                    style="color: var(--color-primary); font-weight:700; text-transform: uppercase; letter-spacing: 2px;">Flexible
+                    Budgeting</span>
+                <h1 style="margin-top: 0.5rem; font-family: var(--font-heading); font-size: calc(1.8rem + 1.5vw);">
+                    Transparent Pricing Plans</h1>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto 0; font-size: 1.05rem;">
+                    Affordable and high-value digital assets for startups, corporate brands, and educational
+                    institutions.
+                </p>
+
+                <!-- Navigation Tabs -->
+                <div class="pricing-tabs-container">
+                    <button class="pricing-tab-btn active" data-target="web-app-panel">💻 Web & Apps</button>
+                    <button class="pricing-tab-btn" data-target="edtech-lms-panel">🏫 EdTech & LMS Solutions</button>
+                    <button class="pricing-tab-btn" data-target="marketing-seo-panel">📈 Marketing & SEO</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING PANELS -->
+        <section class="pricing-content-section">
+            <div class="container">
+
+                <!-- PANEL 1: WEB & APPS -->
+                <div class="pricing-panel active" id="web-app-panel">
+                    <h2 class="text-center" style="margin-bottom: 3rem; font-family: var(--font-heading);">Website
+                        Development Packages</h2>
+
+                    <div class="pricing-grid">
+                        <!-- Card 1: Starter -->
+                        <div class="pricing-card-premium">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Starter Package</h3>
+                                <p class="plan-subtitle">Perfect for Small Businesses & Startups</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹14,999</span>
+                                    <span class="plan-price-period">/one-time</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Up to 5 Pages
+                                    Website</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Mobile Responsive
+                                    Design</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Contact Form
+                                    Setup</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> WhatsApp
+                                    Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Basic SEO Setup
+                                </li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Google Maps
+                                    Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Social Media
+                                    Links</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 1 Year Free SSL
+                                    Certificate</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Basic Speed
+                                    Optimization</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 1 Month Free
+                                    Support</li>
+                            </ul>
+                            <a href="contact.html?package=web-starter" class="btn btn-primary plan-btn">Get Starter
+                                Plan</a>
+                        </div>
+
+                        <!-- Card 2: Growth (Popular) -->
+                        <div class="pricing-card-premium popular">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Growth Package</h3>
+                                <p class="plan-subtitle">Perfect for Growing Businesses</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹29,999</span>
+                                    <span class="plan-price-period">/one-time</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Up to 12 Pages
+                                    Website</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Premium UI/UX
+                                    Design</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Dynamic Website
+                                    Features</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Blog System
+                                    Integrated</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Lead Generation
+                                    Forms</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Advanced SEO
+                                    Setup</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Google Analytics
+                                    & Search Console</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> WhatsApp & Email
+                                    Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Advanced Speed
+                                    Optimization</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Essential
+                                    Security Setup</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 3 Months Free
+                                    Support</li>
+                            </ul>
+                            <a href="contact.html?package=web-growth" class="btn btn-primary plan-btn">Get Growth
+                                Plan</a>
+                        </div>
+
+                        <!-- Card 3: Premium Business -->
+                        <div class="pricing-card-premium">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Premium Business</h3>
+                                <p class="plan-subtitle">Perfect for Large Businesses & Brands</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹59,999</span>
+                                    <span class="plan-price-period">/one-time</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Unlimited Pages
+                                </li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Fully Custom
+                                    Coding</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Advanced Admin
+                                    Dashboard</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> CRM Integration
+                                </li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Payment Gateway
+                                    Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Premium
+                                    Animations</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> AI Chatbot
+                                    Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Advanced SEO
+                                    Optimization</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Custom Features &
+                                    APIs</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Ultimate
+                                    Performance Optimization</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 24/7 Priority
+                                    Support</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 6 Months Free
+                                    Maintenance</li>
+                            </ul>
+                            <a href="contact.html?package=web-premium" class="btn btn-primary plan-btn">Get Premium
+                                Plan</a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile App Table -->
+                    <div class="pricing-table-section">
+                        <h3 class="pricing-table-title">📱 Mobile App Development Packages</h3>
+                        <div class="table-responsive">
+                            <table class="custom-pricing-table">
+                                <thead>
+                                    <tr>
+                                        <th>Package Tier</th>
+                                        <th>Description</th>
+                                        <th>Starting Price</th>
+                                        <th>Call to Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Basic App</strong></td>
+                                        <td>Standard responsive utilities, static configurations, basic listing layout.
+                                        </td>
+                                        <td class="table-price-tag">₹39,999</td>
+                                        <td><a href="contact.html?ref=app-basic" class="btn-tertiary">Enquire Now</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Business App</strong></td>
+                                        <td>Dynamic workflows, custom databases, database dashboards, Google Play setup.
+                                        </td>
+                                        <td class="table-price-tag">₹79,999</td>
+                                        <td><a href="contact.html?ref=app-business" class="btn-tertiary">Enquire Now</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Enterprise App</strong></td>
+                                        <td>Full cross-platform iOS + Android, APIs, live syncing portals, advanced
+                                            panels.</td>
+                                        <td class="table-price-tag">₹1,49,999+</td>
+                                        <td><a href="contact.html?ref=app-enterprise" class="btn-tertiary">Custom
+                                                Quote</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 2: EDTECH & LMS -->
+                <div class="pricing-panel" id="edtech-lms-panel">
+                    <h2 class="text-center" style="margin-bottom: 1rem; font-family: var(--font-heading);">LMS & Smart
+                        Campus Solutions</h2>
+                    <p class="text-center"
+                        style="color:var(--text-secondary); margin-bottom:4rem; max-width:700px; margin-left:auto; margin-right:auto;">
+                        Transform your educational institution into a complete digital campus with our customized
+                        software modules.
+                    </p>
+
+                    <div class="pricing-grid">
+                        <!-- LMS Starter -->
+                        <div class="pricing-card-premium">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Starter LMS</h3>
+                                <p class="plan-subtitle">For Individual Teachers & Small Tutors</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹24,999</span>
+                                    <span class="plan-price-period">/one-time</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Responsive LMS
+                                    Website</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Admin Panel &
+                                    Teacher Panel</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Student
+                                    Registration & Login</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Course Upload
+                                    System</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Video Lessons
+                                    Module</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> PDF Notes & Study
+                                    Materials</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Basic Test & Quiz
+                                    System</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Auto Certificate
+                                    Generation</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> WhatsApp Alerts
+                                </li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Up to 500
+                                    Students Cap</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 1 Month Free
+                                    Support</li>
+                            </ul>
+                            <a href="book-demo.html?plan=lms-starter" class="btn btn-primary plan-btn">Get Starter
+                                LMS</a>
+                        </div>
+
+                        <!-- LMS Professional (Popular) -->
+                        <div class="pricing-card-premium popular">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Professional LMS</h3>
+                                <p class="plan-subtitle">For Coaching Institutes & Schools</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹59,999</span>
+                                    <span class="plan-price-period">/one-time</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Everything in
+                                    Starter LMS</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> **Android Student
+                                    App**</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Live Classes
+                                    (Zoom/Meet Integration)</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Recorded Lectures
+                                    Database</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Online Mock Exams
+                                    & Tests</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Assignments
+                                    Submission Module</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Doubt Management
+                                    Panel</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Online Fee
+                                    Management Portal</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Student
+                                    Attendance Database</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Push
+                                    Notifications Alerts</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Up to 5,000
+                                    Students Cap</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 3 Months Free
+                                    Support</li>
+                            </ul>
+                            <a href="book-demo.html?plan=lms-pro" class="btn btn-primary plan-btn">Get Professional
+                                LMS</a>
+                        </div>
+
+                        <!-- LMS Enterprise -->
+                        <div class="pricing-card-premium">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Enterprise EdTech</h3>
+                                <p class="plan-subtitle">For Large Academies & Universities</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹1,49,999+</span>
+                                    <span class="plan-price-period">/one-time</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Everything in
+                                    Professional LMS</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> **Android + iOS
+                                    App Suite**</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Complete School
+                                    ERP Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Parent, Teacher &
+                                    Student Panels</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Dedicated Live
+                                    Class Server</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> AI-Based Progress
+                                    Analytics</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Library &
+                                    Transport Management</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Hostel &
+                                    Inventory Management</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Multi-Branch
+                                    Operations Portal</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> HR & Payroll
+                                    Management Database</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Biometric System
+                                    Integration</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Unlimited Student
+                                    Enrollment</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 6 Months Free
+                                    Maintenance</li>
+                            </ul>
+                            <a href="book-demo.html?plan=edtech-enterprise" class="btn btn-primary plan-btn">Get
+                                Enterprise Campus</a>
+                        </div>
+                    </div>
+
+                    <!-- Teacher Personal LMS & School ERP table -->
+                    <div class="grid-2">
+                        <!-- Block 1: Teacher personal LMS -->
+                        <div class="glass-card" style="padding: 2.5rem;">
+                            <h4 style="color:var(--color-primary); margin-bottom: 0.5rem;">👨‍🏫 Teacher Personal LMS
+                            </h4>
+                            <h3 style="margin-bottom: 1.5rem;">₹14,999 <span
+                                    style="font-size:0.85rem; font-weight:500; color:var(--text-tertiary);">/one-time</span>
+                            </h3>
+                            <p style="font-size:0.9rem; margin-bottom: 1.5rem; color:var(--text-secondary);">A
+                                lightweight personal portal designed for freelance educators or independent teachers
+                                looking to upload video lessons online.</p>
+                            <ul
+                                style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem; color:var(--text-secondary); margin-bottom:2rem;">
+                                <li>✓ Personal Teaching Website</li>
+                                <li>✓ Video & PDF Lessons Management</li>
+                                <li>✓ Student Login & Course Dashboard</li>
+                                <li>✓ Payment Gateway Integration</li>
+                                <li>✓ Up to 200 Students Database</li>
+                            </ul>
+                            <a href="book-demo.html?ref=teacher-lms" class="btn btn-secondary"
+                                style="width:100%; text-align:center;">Request Setup</a>
+                        </div>
+
+                        <!-- Block 2: SaaS Monthly Subscription -->
+                        <div class="glass-card" style="padding: 2.5rem;">
+                            <h4 style="color:var(--color-premium); margin-bottom: 0.5rem;">💻 Monthly SaaS Subscription
+                            </h4>
+                            <h3 style="margin-bottom: 1.5rem;">Starting at ₹999<span
+                                    style="font-size:0.85rem; font-weight:500; color:var(--text-tertiary);">/month</span>
+                            </h3>
+                            <p style="font-size:0.9rem; margin-bottom: 1.5rem; color:var(--text-secondary);">Don't want
+                                to pay a lump sum? Choose our secure cloud hosting SaaS subscription models and pay
+                                month-to-month.</p>
+                            <ul
+                                style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem; font-size:0.85rem; color:var(--text-secondary); margin-bottom:2rem;">
+                                <li><strong>Starter (₹999/mo)</strong>: Up to 300 students, core LMS features.</li>
+                                <li><strong>Growth (₹2,499/mo)</strong>: Up to 2,000 students, mobile student app, quiz
+                                    engine.</li>
+                                <li><strong>Enterprise (₹4,999/mo)</strong>: Unlimited students, full ERP + LMS,
+                                    Priority support.</li>
+                            </ul>
+                            <a href="book-demo.html?ref=saas-lms" class="btn btn-secondary"
+                                style="width:100%; text-align:center;">Try SaaS Model</a>
+                        </div>
+                    </div>
+
+                    <!-- School ERP table -->
+                    <div class="pricing-table-section">
+                        <h3 class="pricing-table-title">🏫 School ERP Pricing</h3>
+                        <div class="table-responsive">
+                            <table class="custom-pricing-table">
+                                <thead>
+                                    <tr>
+                                        <th>Software Package</th>
+                                        <th>Features & Access Options</th>
+                                        <th>Starting Price</th>
+                                        <th>Setup Call</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Basic School ERP</strong></td>
+                                        <td>Administrative dashboard, student directory, fee registry, attendance
+                                            reports.</td>
+                                        <td class="table-price-tag">₹39,999</td>
+                                        <td><a href="book-demo.html?ref=erp-basic" class="btn-tertiary">Schedule
+                                                Demo</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>School ERP + Website</strong></td>
+                                        <td>Basic School ERP database plus a fully customizable web portal for
+                                            admissions.</td>
+                                        <td class="table-price-tag">₹59,999</td>
+                                        <td><a href="book-demo.html?ref=erp-website" class="btn-tertiary">Schedule
+                                                Demo</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>School ERP + Website + Mobile App</strong></td>
+                                        <td>School ERP base + website + dedicated Android mobile app for parent-teacher
+                                            alerts.</td>
+                                        <td class="table-price-tag">₹89,999</td>
+                                        <td><a href="book-demo.html?ref=erp-app" class="btn-tertiary">Schedule Demo</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Complete Digital Campus Solution</strong></td>
+                                        <td>All tools, biometric attendance setups, library card, transport, hostel,
+                                            multi-apps.</td>
+                                        <td class="table-price-tag">₹1,49,999+</td>
+                                        <td><a href="book-demo.html?ref=erp-campus" class="btn-tertiary">Schedule
+                                                Demo</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tagline-banner">
+                        "Transform Your Institution into a Complete Digital Campus with The Digital Fixer EdTech
+                        Solutions."
+                    </div>
+                </div>
+
+                <!-- PANEL 3: MARKETING & SEO -->
+                <div class="pricing-panel" id="marketing-seo-panel">
+                    <h2 class="text-center" style="margin-bottom: 1rem; font-family: var(--font-heading);">Digital
+                        Marketing & Lead Generation</h2>
+                    <p class="text-center"
+                        style="color:var(--text-secondary); margin-bottom:4rem; max-width:700px; margin-left:auto; margin-right:auto;">
+                        Grow your online sales, search visibility, and client acquisitions through targeted campaigns.
+                    </p>
+
+                    <div class="pricing-grid">
+                        <!-- Marketing Starter -->
+                        <div class="pricing-card-premium">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Marketing Starter</h3>
+                                <p class="plan-subtitle">For Local Shops & Small Agencies</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹7,999</span>
+                                    <span class="plan-price-period">/month</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Local SEO & GMB
+                                    Optimization</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Up to 10 Target
+                                    Keywords</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 8 Custom Social
+                                    Media Creatives</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Basic On-Page SEO
+                                    Checklist</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Monthly Growth
+                                    Auditing</li>
+                            </ul>
+                            <a href="free-consultation.html?plan=marketing-starter" class="btn btn-primary plan-btn">Get
+                                Started</a>
+                        </div>
+
+                        <!-- Marketing Growth (Popular) -->
+                        <div class="pricing-card-premium popular">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Marketing Growth</h3>
+                                <p class="plan-subtitle">For Growing Corporate Brands</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹14,999</span>
+                                    <span class="plan-price-period">/month</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Full SEO
+                                    Optimization (On/Off page)</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Google Ads & Meta
+                                    Ads Setup</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 20 Custom Social
+                                    Media Creatives</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 4 Edited Video
+                                    Reels/Shorts</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Competitor
+                                    Keyword Tracking</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Lead Generation
+                                    Campaigns</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Weekly
+                                    Performance Audits</li>
+                            </ul>
+                            <a href="free-consultation.html?plan=marketing-growth" class="btn btn-primary plan-btn">Get
+                                Started</a>
+                        </div>
+
+                        <!-- Marketing Premium -->
+                        <div class="pricing-card-premium">
+                            <div class="plan-header">
+                                <h3 class="plan-title">Marketing Premium</h3>
+                                <p class="plan-subtitle">For Scaling Enterprise Brands</p>
+                                <div class="plan-price-block">
+                                    <span class="plan-price">₹24,999</span>
+                                    <span class="plan-price-period">/month</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features-list">
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Advanced Search
+                                    Authority Building</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Advanced Pay Per
+                                    Click (PPC) Management</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Daily Ad Spend
+                                    Auditing & Tweaks</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Unlimited Content
+                                    & Social Posts</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> 8 Custom Edited
+                                    High-Quality Videos</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Brand
+                                    Consultation & Strategy Funnels</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Dedicated Local
+                                    Manager Support</li>
+                                <li class="plan-feature-item"><span class="plan-feature-icon">✓</span> Bi-Weekly Syncing
+                                    Meetings</li>
+                            </ul>
+                            <a href="free-consultation.html?plan=marketing-premium" class="btn btn-primary plan-btn">Get
+                                Started</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQS ACCORDION -->
+        <section class="section-padding"
+            style="background: var(--bg-tertiary); border-top:1px solid var(--border-color);">
+            <div class="container" style="max-width: 800px;">
+                <div class="text-center" style="margin-bottom: 4rem;">
+                    <span style="color: var(--color-primary); font-weight:700;">FAQs</span>
+                    <h2>Frequently Answered Queries</h2>
+                </div>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-trigger">What services does The Digital Fixer provide?</button>
+                        <div class="faq-content">
+                            <p>We provide a complete suite of IT and digital solutions, including Website Development,
+                                E-Commerce Development, Mobile App Development, Custom Software Solutions (ERP, CRM,
+                                School Management Systems), SEO Services, Digital Marketing, Social Media Management,
+                                Graphic Designing, Video Editing & Animation, Branding & Logo Design, Cybersecurity,
+                                Amazon Seller Management, and Business Automation Solutions.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger">Why should I choose The Digital Fixer?</button>
+                        <div class="faq-content">
+                            <p>We stand out by offering fully customized and tailored solutions, competitive and
+                                affordable pricing plans, an experienced team of certified professionals, modern and
+                                scalable technology stacks, dedicated post-launch support, and premium quality designs
+                                that ensure high user engagement and conversion rates.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger">How can I contact The Digital Fixer for a free
+                            consultation?</button>
+                        <div class="faq-content">
+                            <p>You can connect with us directly via our Website Contact Form, Email Support, WhatsApp
+                                chat, or direct phone calls. We offer a complimentary initial consultation to analyze
+                                your business or school requirements and provide a customized proposal.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 2rem;">
+                    <a href="faq.html" class="btn-tertiary"
+                        style="font-size: 0.95rem; font-weight: 600; text-decoration: underline; color: var(--color-primary);">Have
+                        more questions? View all FAQs &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SHARED FOOTER DYNAMIC INJECT -->
+    <footer id="global-footer"></footer>
+
+    <!-- SHARED FLOATING CHAT/WA/SCROLL WIDGETS -->
+    <div id="global-widgets"></div>
+
+    <!-- JS MODULES -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/counters.js"></script>
+    <script src="assets/js/forms.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+
+    <!-- PRICING CONTROLLER SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.pricing-tab-btn');
+            const panels = document.querySelectorAll('.pricing-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active tab button class
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Update active pricing panel visibility
+                    const targetPanelId = tab.getAttribute('data-target');
+                    panels.forEach(panel => {
+                        if (panel.id === targetPanelId) {
+                            panel.classList.add('active');
+                        } else {
+                            panel.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

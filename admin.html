@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Lead Dashboard | The Digital Fixer</title>
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="icon" type="image/png" href="assets/images/logo-only.png">
+    
+    <!-- Load Theme Toggle Logic immediately in head -->
+    <script src="assets/js/darkmode.js"></script>
+
+    <style>
+        .admin-layout {
+            padding-top: 140px;
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+            font-family: var(--font-heading);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Filter controls */
+        .filter-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 1.5rem;
+            align-items: end;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+
+        /* Lead Table styling */
+        .leads-table-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 4rem;
+        }
+
+        .leads-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .leads-table th {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 700;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .leads-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            color: var(--text-secondary);
+        }
+
+        .leads-table tr:hover td {
+            background: rgba(14, 165, 233, 0.02);
+        }
+
+        /* Badge Statuses */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-new { background: rgba(14, 165, 233, 0.1); color: var(--color-primary); }
+        .status-contacted { background: rgba(234, 179, 8, 0.1); color: #ca8a04; }
+        .status-closed { background: rgba(16, 185, 129, 0.1); color: var(--color-success); }
+
+        .btn-export {
+            background: var(--grad-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .status-select {
+            padding: 0.4rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .lead-message-box {
+            max-width: 320px;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            background: var(--bg-primary);
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .empty-leads-view {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 992px) {
+            .filter-box {
+                grid-template-columns: 1fr 1fr;
+            }
+            .filter-box button {
+                grid-column: span 2;
+            }
+        }
+        @media (max-width: 768px) {
+            .filter-box {
+                grid-template-columns: 1fr;
+            }
+            .filter-box button {
+                grid-column: span 1;
+            }
+            .leads-table th, .leads-table td {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SHARED NAVIGATION DYNAMIC INJECT -->
+    <header id="global-header"></header>
+
+    <!-- ADMIN LAYOUT -->
+    <main class="admin-layout">
+        <div class="container">
+            
+            <!-- Dashboard Header -->
+            <div class="admin-header">
+                <div>
+                    <span style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">Control Center</span>
+                    <h1 style="margin: 0.25rem 0 0; font-family: var(--font-heading);">Lead Management Dashboard</h1>
+                </div>
+                <button class="btn-export" onclick="exportLeads()">📥 Export to Excel (CSV)</button>
+            </div>
+
+            <!-- Lead Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Total Enquiries</div>
+                </div>
+                <div class="stat-card" style="border-left: 4px solid var(--color-primary);">
+                    <div class="stat-value" id="stat-new" style="color: var(--color-primary);">0</div>
+                    <div class="stat-label">New leads</div>
+                </div>
+                <div class="stat-card" style="border-left: 4px solid #ea3b08;">
+                    <div class="stat-value" id="stat-contacted" style="color: #ca8a04;">0</div>
+                    <div class="stat-label">Contacted</div>
+                </div>
+                <div class="stat-card" style="border-left: 4px solid var(--color-success);">
+                    <div class="stat-value" id="stat-closed" style="color: var(--color-success);">0</div>
+                    <div class="stat-label">Closed / Won</div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-box">
+                <div class="filter-group">
+                    <label class="filter-label">Search enquiries</label>
+                    <input type="text" class="filter-input" id="filter-search" placeholder="Search by name, email, phone, message..." oninput="fetchLeads()">
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Service category</label>
+                    <select class="filter-input" id="filter-service" onchange="fetchLeads()">
+                        <option value="">All Services</option>
+                        <option value="Website Development">Website Development</option>
+                        <option value="E-Commerce Development">E-Commerce Development</option>
+                        <option value="Mobile App Development">Mobile App Development</option>
+                        <option value="Software Development">Software Development (ERP/CRM)</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                        <option value="SEO Services">SEO Services</option>
+                        <option value="LMS Solution">LMS / EdTech Solutions</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Lead Status</label>
+                    <select class="filter-input" id="filter-status" onchange="fetchLeads()">
+                        <option value="">All Statuses</option>
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+                <button class="pricing-tab-btn" onclick="clearFilters()" style="margin: 0; padding: 0.75rem 1.5rem; height: 46px;">Reset</button>
+            </div>
+
+            <!-- Lead List Table -->
+            <div class="leads-table-container">
+                <div style="overflow-x: auto;">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Contact details</th>
+                                <th>Company</th>
+                                <th>Service interest</th>
+                                <th>Message</th>
+                                <th>Date Submitted</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-table-body">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="empty-leads" class="empty-leads-view" style="display: none;">
+                    <h3>No leads found matching your criteria.</h3>
+                    <p style="margin-top:0.5rem; color:var(--text-tertiary);">Check your filters or reset search query.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SHARED FOOTER DYNAMIC INJECT -->
+    <footer id="global-footer" style="margin-top: 0;"></footer>
+
+    <!-- JS MODULES -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Dashboard Operations Script -->
+    <script>
+        let currentLeads = [];
+
+        async function fetchLeads() {
+            const search = document.getElementById('filter-search').value.trim();
+            const service = document.getElementById('filter-service').value;
+            const status = document.getElementById('filter-status').value;
+
+            // Build query params
+            const queryParams = new URLSearchParams();
+            if (search) queryParams.append('search', search);
+            if (service) queryParams.append('service', service);
+            if (status) queryParams.append('status', status);
+
+            try {
+                const response = await fetch(`/api/enquiries?${queryParams.toString()}`);
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        alert('Unauthorized access. Page will reload.');
+                        window.location.reload();
+                        return;
+                    }
+                    throw new Error('Could not retrieve enquiries.');
+                }
+                
+                const leads = await response.json();
+                currentLeads = leads;
+                renderLeads(leads);
+                updateStats(leads);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderLeads(leads) {
+            const tbody = document.getElementById('leads-table-body');
+            const emptyView = document.getElementById('empty-leads');
+            
+            tbody.innerHTML = '';
+            
+            if (leads.length === 0) {
+                emptyView.style.display = 'block';
+                return;
+            }
+            emptyView.style.display = 'none';
+
+            leads.forEach(lead => {
+                const tr = document.createElement('tr');
+                
+                // Status CSS class mapping
+                let badgeClass = 'status-new';
+                if (lead.status === 'Contacted') badgeClass = 'status-contacted';
+                if (lead.status === 'Closed') badgeClass = 'status-closed';
+
+                tr.innerHTML = `
+                    <td><strong>#${lead.id}</strong></td>
+                    <td>
+                        <strong style="color:var(--text-primary); font-size:1.05rem;">${lead.name}</strong><br>
+                        ✉️ <a href="mailto:${lead.email}" style="color:var(--color-primary); text-decoration:none;">${lead.email}</a><br>
+                        📞 <a href="tel:${lead.phone}" style="color:var(--color-primary); text-decoration:none;">${lead.phone}</a>
+                    </td>
+                    <td>${lead.company || '<span style="color:var(--text-tertiary)">N/A</span>'}</td>
+                    <td>
+                        <span style="font-weight:700; color:var(--text-primary);">${lead.service}</span><br>
+                        <small style="color:var(--text-tertiary); font-size:0.75rem; word-break:break-all;">Source: <a href="${lead.source_url || '#'}" target="_blank" style="color:var(--text-tertiary);">${lead.source_url ? new URL(lead.source_url).pathname : 'Direct'}</a></small>
+                    </td>
+                    <td>
+                        <div class="lead-message-box">${lead.message || '<span style="color:var(--text-tertiary); font-style:italic;">No message details provided.</span>'}</div>
+                    </td>
+                    <td><small>${lead.date}</small></td>
+                    <td>
+                        <select class="status-select" onchange="updateStatus(${lead.id}, this.value)">
+                            <option value="New" ${lead.status === 'New' ? 'selected' : ''}>New 🔵</option>
+                            <option value="Contacted" ${lead.status === 'Contacted' ? 'selected' : ''}>Contacted 🟡</option>
+                            <option value="Closed" ${lead.status === 'Closed' ? 'selected' : ''}>Closed 🟢</option>
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateStats(leads) {
+            // Count total from database size, and counts per status
+            const total = currentLeads.length;
+            const news = currentLeads.filter(l => l.status === 'New').length;
+            const contacted = currentLeads.filter(l => l.status === 'Contacted').length;
+            const closed = currentLeads.filter(l => l.status === 'Closed').length;
+
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-new').textContent = news;
+            document.getElementById('stat-contacted').textContent = contacted;
+            document.getElementById('stat-closed').textContent = closed;
+        }
+
+        async function updateStatus(id, newStatus) {
+            try {
+                const response = await fetch(`/api/enquiries/${id}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                if (!response.ok) throw new Error('Could not update status.');
+                
+                // Success - update local array status and refresh stats
+                currentLeads = currentLeads.map(l => l.id === id ? { ...l, status: newStatus } : l);
+                updateStats(currentLeads);
+                
+                // Rerender table
+                const search = document.getElementById('filter-search').value.trim();
+                const service = document.getElementById('filter-service').value;
+                const status = document.getElementById('filter-status').value;
+                
+                // If filtering by status, remove row on status change
+                if (status && status !== newStatus) {
+                    fetchLeads();
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById('filter-search').value = '';
+            document.getElementById('filter-service').value = '';
+            document.getElementById('filter-status').value = '';
+            fetchLeads();
+        }
+
+        function exportLeads() {
+            // Simply redirect to trigger direct CSV attachment file download
+            window.location.href = '/api/enquiries/export';
+        }
+
+        // Fetch on Load
+        document.addEventListener('DOMContentLoaded', fetchLeads);
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+/* responsive.css - Responsive Adjustments for Mobile, Tablet, and Ultra-wide Screens */
+
+/* Ultra-wide Screens */
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* Medium Desktop / Laptops */
+@media (max-width: 1200px) {
+  .mega-menu {
+    width: 700px;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .footer-logo-wrapper {
+    grid-column: span 3;
+  }
+}
+
+/* Tablets (Portrait & Landscape) */
+@media (max-width: 992px) {
+  :root {
+    --header-height: 70px;
+  }
+  
+  .section-padding {
+    padding: 6rem 0;
+  }
+  
+  /* Navigation */
+  .main-nav {
+    display: none; /* Hide standard nav, toggle active mobile toggle instead */
+  }
+  
+  .mobile-toggle {
+    display: flex;
+  }
+  
+  .header-actions .btn {
+    display: none; /* Hide header CTA button on mobile/tablet to save space */
+  }
+  
+  /* Grids */
+  .grid-4, .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .bento-span-4, .bento-span-3 {
+    grid-column: span 6;
+  }
+  
+  .bento-span-8 {
+    grid-column: span 12;
+  }
+  
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-logo-wrapper {
+    grid-column: span 2;
+  }
+}
+
+/* Small Tablets & Large Mobiles */
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .bento-item {
+    grid-column: span 12 !important;
+    padding: 1.5rem;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .section-padding {
+    padding: 4rem 0;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .footer-logo-wrapper {
+    grid-column: span 1;
+  }
+  
+  /* Mobile Sticky CTA Bar active */
+  .mobile-sticky-cta {
+    display: flex;
+  }
+  
+  body {
+    padding-bottom: 60px; /* Space for sticky mobile bar */
+  }
+  
+  .chat-widget {
+    width: calc(100% - 2rem);
+    height: 450px;
+    bottom: 5.5rem;
+    right: 1rem;
+    left: 1rem;
+  }
+  
+  .floating-widgets {
+    bottom: 5.5rem;
+    right: 1rem;
+  }
+  
+  .cookie-consent {
+    left: 1rem;
+    right: 1rem;
+    bottom: 5.5rem;
+    max-width: none;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .footer-legal-links {
+    justify-content: center;
+  }
+}
+
+/* Extra Small Mobiles */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+  }
+}
